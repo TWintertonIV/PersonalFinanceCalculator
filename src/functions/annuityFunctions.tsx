@@ -14,12 +14,14 @@ export function annuityPMT(fv: number | null, time: number | null, pv: number | 
     let val = 0;
     if(fv){
         val = (fv * (interest/100))/(Math.pow(1 + interest/100, time) - 1);
+        if(begin) val = val / (1 + interest/100);
+
     }
     if(pv){
         val = (pv * (interest/100))/(1 - Math.pow(1 + interest/100, -time));
+        if(begin) val = val * (1 + interest/100);
     }
 
-    if(begin) val = val * (1 + interest/100);
     return val;
   }
 
